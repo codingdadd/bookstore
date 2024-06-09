@@ -15,8 +15,9 @@ const Home = () => {
     axios
       .get('http://localhost:5555/books')
       .then((response) => {
-        if (response.data && response.data.data) {
-          setBooks(response.data.data);
+        console.log(response);
+        if (response.data && response.data.books) {
+          setBooks(response.data.books);
         } else {
           setBooks([]); // Ensure books is an empty array if no data is returned
         }
