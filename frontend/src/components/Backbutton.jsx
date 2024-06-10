@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Backbutton = ({distination="/"}) => {
+const Backbutton = ({distination = "/"}) => {
   return (
     <div>
         <Link to={distination}>
