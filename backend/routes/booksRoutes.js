@@ -87,7 +87,7 @@ router.put("/:id",  async (request,response) => {
     }
     const {id} = request.params
 
-    const result = await Book.findByIdAndUpdate(id , request.body)
+    const result = await Book.findByIdAndUpdate(id, request.body)
     
     if(!result){
         return response.status(404 ).json({message:"Book not found"
