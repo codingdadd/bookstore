@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const ShowBook = () => {
-  const [books, setBooks] = useState({});
+  const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false); // Corrected useState typo
   const { id } = useParams();
 
@@ -14,7 +14,7 @@ const ShowBook = () => {
     axios
       .get(`http://localhost:5555/books/${id}`)
       .then((response) => {
-        setBooks(response.data);
+        setBook(response.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -27,17 +27,25 @@ const ShowBook = () => {
     <>
       <Backbutton />
 
-      <div className='flex justify-center bg-slate-300 text-center text-2xl my-2 py-1'>Show Book</div>
+      <div className='flex justify-center bg-slate-300 text-center text-2xl my-2 py-1'>
+        Show Book
+      </div>
 
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex justify-center max-w-md rounded overflow-hidden shadow-lg bg-white my-7">
-          <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">{books.id}</div>
-            <div className="font-bold text-xl mb-2">{books.title}</div>
-            <p className="text-gray-700 text-base">{books.author}</p>
-            <p className="text-gray-700 text-base">{books.publishedYear}</p>
+        <div className="flex justify-center items-center my-7">
+          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6">
+            <div className="font-bold text-2xl mb-4 text-center">{book.title}</div>
+            <div className="text-gray-700 text-lg mb-2">
+              <span className="font-semibold">Author:</span> {book.author}
+            </div>
+            <div className="text-gray-700 text-lg mb-2">
+              <span className="font-semibold">Published Year:</span> {book.publishedYear}
+            </div>
+            <div className="text-gray-500 text-sm">
+              <span className="font-semibold">Book ID:</span> {book._id}
+            </div>
           </div>
         </div>
       )}
